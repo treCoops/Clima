@@ -44,4 +44,6 @@ dependencies {
     implementation 'com.fede987:status-bar-alert:1.1.0'
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 
+    implementation 'com.github.luisvasquez:sTooltip:1.5.1'
+
 }

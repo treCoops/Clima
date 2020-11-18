@@ -1,15 +1,15 @@
-package com.bhagya.clima;
+package com.bhagya.clima.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bhagya.clima.R;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 
 public class SplashActivity extends AppCompatActivity {
@@ -25,15 +25,12 @@ public class SplashActivity extends AppCompatActivity {
         imgLogo.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_down_enter));
         txtAppName.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_up_enter));
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
+        new Handler().postDelayed(() -> {
 
-                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-                Animatoo.animateSlideLeft(SplashActivity.this);
-                finishAffinity();
+            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+            Animatoo.animateSlideLeft(SplashActivity.this);
+            finishAffinity();
 
-            }
         },2500);
 
     }
