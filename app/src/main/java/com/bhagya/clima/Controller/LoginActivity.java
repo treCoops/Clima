@@ -1,5 +1,6 @@
 package com.bhagya.clima.Controller;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -15,20 +16,39 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bhagya.clima.Helper.AlertBar;
+import com.bhagya.clima.Helper.ProgressDialog;
 import com.bhagya.clima.Helper.ToolTip;
 import com.bhagya.clima.Helper.Validator;
+import com.bhagya.clima.HomeActivity;
+import com.bhagya.clima.Model.UserModel;
 import com.bhagya.clima.R;
+import com.bhagya.clima.Util.ConnectionUtil;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
-import com.fede987.statusbaralert.StatusBarAlert;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.net.NoRouteToHostException;
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
-    TextInputEditText txtEmailAddress;
-            EditText txtPassword;
+    TextInputEditText txtEmailAddress, txtPassword;
     ImageView imgEmailStatus, imgPasswordStatus;
 
     private boolean doubleBackToExitPressedOnce = false;
+
+    private FirebaseAuth mAuth;
+    ProgressDialog progressDialog;
+
+    public static UserModel user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +65,22 @@ public class LoginActivity extends AppCompatActivity {
         TextView txtSignUp = findViewById(R.id.txtSignUp);
 
         activeTextChangeListeners();
+        mAuth = FirebaseAuth.getInstance();
+
+        progressDialog = new ProgressDialog();
+
+        if(ConnectionUtil.isInternetAvailable(getApplicationContext(), LoginActivity.this)){
+            if(mAuth.getCurrentUser() != null){
+                progressDialog.showProgressBar(LoginActivity.this);
+                getUserData(mAuth.getUid());
+            }
+        }
 
         btnLogin.setOnClickListener(v -> {
+
+            if(!ConnectionUtil.isInternetAvailable(getApplicationContext(), LoginActivity.this)){
+                return;
+            }
 
             if(Validator.checkEmpty(txtEmailAddress.getText().toString().trim())){
                 ToolTip.show(getApplicationContext(), txtEmailAddress, "Email address required!");
@@ -71,6 +105,9 @@ public class LoginActivity extends AppCompatActivity {
                 vibrator.vibrate(5);
                 return;
             }
+
+            login(txtEmailAddress.getText().toString().trim(), txtPassword.getText().toString());
+
 
         });
 
@@ -149,5 +186,45 @@ public class LoginActivity extends AppCompatActivity {
                 doubleBackToExitPressedOnce = false;
             }
         }, 2000);
+    }
+
+    void login(String email, String password){
+        progressDialog.showProgressBar(LoginActivity.this);
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            getUserData(user.getUid());
+
+                        } else {
+                            AlertBar.notifyDanger(LoginActivity.this, Objects.requireNonNull(task.getException()).getMessage());
+                            progressDialog.dismissProgressBar();
+                        }
+                    }
+                });
+    }
+
+    void getUserData(String uID){
+        FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                progressDialog.dismissProgressBar();
+                if(dataSnapshot.exists()){
+                    user = dataSnapshot.getValue(UserModel.class);
+                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                    Animatoo.animateSlideLeft(LoginActivity.this);
+                    finishAffinity();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                AlertBar.notifyDanger(LoginActivity.this, "No related data found!");
+                progressDialog.dismissProgressBar();
+            }
+        });
     }
 }

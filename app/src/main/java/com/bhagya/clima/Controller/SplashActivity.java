@@ -9,7 +9,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bhagya.clima.Helper.AlertBar;
+//import com.bhagya.clima.Helper.ProgressDialog;
 import com.bhagya.clima.R;
+import com.bhagya.clima.Util.ConnectionUtil;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 
 public class SplashActivity extends AppCompatActivity {
@@ -25,13 +28,16 @@ public class SplashActivity extends AppCompatActivity {
         imgLogo.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_down_enter));
         txtAppName.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_up_enter));
 
-        new Handler().postDelayed(() -> {
+//        ProgressDialog.show(getApplicationContext());
 
-            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-            Animatoo.animateSlideLeft(SplashActivity.this);
-            finishAffinity();
+        if(ConnectionUtil.isInternetAvailable(getApplicationContext(), SplashActivity.this)){
+            new Handler().postDelayed(() -> {
 
-        },2500);
+                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                Animatoo.animateSlideLeft(SplashActivity.this);
+                finishAffinity();
 
+            },2500);
+        }
     }
 }
