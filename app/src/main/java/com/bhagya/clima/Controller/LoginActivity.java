@@ -3,24 +3,32 @@ package com.bhagya.clima.Controller;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bhagya.clima.Helper.AlertBar;
 import com.bhagya.clima.Helper.ToolTip;
 import com.bhagya.clima.Helper.Validator;
 import com.bhagya.clima.R;
+import com.blogspot.atifsoftwares.animatoolib.Animatoo;
+import com.fede987.statusbaralert.StatusBarAlert;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText txtEmailAddress, txtPassword;
+    TextInputEditText txtEmailAddress;
+            EditText txtPassword;
     ImageView imgEmailStatus, imgPasswordStatus;
+
+    private boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +75,9 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         txtSignUp.setOnClickListener(v -> {
-
+            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            Animatoo.animateSlideLeft(LoginActivity.this);
         });
-
-
 
     }
 
@@ -122,5 +129,25 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            finishAffinity();
+            System.exit(0);
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+
+        AlertBar.notifyBackPressed(LoginActivity.this, "Please click BACK again to exit!");
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
     }
 }

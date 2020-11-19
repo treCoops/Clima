@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "805937940533",
+    "firebase_url": "https://clima-4055f.firebaseio.com",
+    "project_id": "clima-4055f",
+    "storage_bucket": "clima-4055f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805937940533:android:1594360ed05da0faf1c97c",
+        "android_client_info": {
+          "package_name": "com.bhagya.clima"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "805937940533-ott987eik8o055ditud0r31vb11a82qn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCScVhlk6ijbemtHgKvpxwUlLs1Rl_AqXU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "805937940533-ott987eik8o055ditud0r31vb11a82qn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

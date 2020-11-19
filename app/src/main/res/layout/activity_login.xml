@@ -45,18 +45,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
-                    android:fontFamily="@font/montserrat_medium"
-                    android:id="@+id/txtEmailAddress"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:hint="@string/email_address"
-                    android:textColor="@color/loginMainTitleColor"
-                    android:background="@android:color/transparent"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginEnd="@dimen/_25sdp"
-                    android:importantForAutofill="no"
-                    android:inputType="textEmailAddress|textNoSuggestions"/>
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/email_address">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtEmailAddress"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:layout_width="match_parent"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_25sdp"
+                        android:importantForAutofill="no"
+                        android:background="@android:color/transparent"
+                        android:inputType="textEmailAddress|textNoSuggestions"
+                        android:textColor="@color/loginMainTitleColor"
+                        android:layout_height="@dimen/_30sdp"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageView
                     android:id="@+id/imgEmailStatus"
@@ -85,17 +92,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/txtPassword"
-                    android:fontFamily="@font/montserrat_medium"
+                <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:hint="@string/password"
-                    android:textColor="@color/loginMainTitleColor"
-                    android:background="@android:color/transparent"
-                    android:layout_marginStart="@dimen/_20sdp"
-                    android:layout_marginEnd="@dimen/_25sdp"
-                    android:inputType="textPassword"/>
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/txtPassword"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:layout_width="match_parent"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_25sdp"
+                        android:background="@android:color/transparent"
+                        android:inputType="textPassword"
+                        android:textColor="@color/loginMainTitleColor"
+                        android:layout_height="@dimen/_30sdp"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <ImageView
                     android:id="@+id/imgPasswordStatus"
