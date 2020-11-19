@@ -1,18 +1,13 @@
 package com.bhagya.clima.Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.bhagya.clima.Helper.AlertBar;
-//import com.bhagya.clima.Helper.ProgressDialog;
 import com.bhagya.clima.R;
-import com.bhagya.clima.Util.ConnectionUtil;
 import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 
 public class SplashActivity extends AppCompatActivity {
@@ -28,16 +23,13 @@ public class SplashActivity extends AppCompatActivity {
         imgLogo.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_down_enter));
         txtAppName.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_up_enter));
 
-//        ProgressDialog.show(getApplicationContext());
+        new Handler().postDelayed(() -> {
 
-        if(ConnectionUtil.isInternetAvailable(getApplicationContext(), SplashActivity.this)){
-            new Handler().postDelayed(() -> {
+            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+            Animatoo.animateSlideLeft(SplashActivity.this);
+            finishAffinity();
 
-                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-                Animatoo.animateSlideLeft(SplashActivity.this);
-                finishAffinity();
+        },2500);
 
-            },2500);
-        }
     }
 }

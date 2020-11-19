@@ -1,9 +1,292 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Controller.HomeActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardSearch"
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/searchHolder"
+                android:layout_width="match_parent"
+                app:startIconDrawable="@drawable/search"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_40sdp"
+                android:hint="@string/search_a_city">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txtSearchCity"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:layout_width="match_parent"
+                    android:importantForAutofill="no"
+                    android:background="@android:color/transparent"
+                    android:inputType="text|textNoSuggestions"
+                    android:textColor="@color/loginMainTitleColor"
+                    android:layout_height="@dimen/_30sdp"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/imgLocate"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:src="@drawable/locate"/>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <ScrollView
+        android:layout_below="@+id/cardSearch"
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+               android:layout_alignParentTop="true"
+                android:layout_marginBottom="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                app:cardCornerRadius="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:id="@+id/mainRelativeLayout"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <RelativeLayout
+                            android:layout_centerVertical="true"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/txtTemperatureMain"
+                                android:fontFamily="@font/montserrat_semi_bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/loginMainTitleColor"
+                                android:text="30\u00B0C"
+                                android:textSize="42sp"/>
+
+                            <TextView
+                                android:id="@+id/sep"
+                                android:textColor="@color/loginMainTitleColor"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:textSize="@dimen/_14sdp"
+                                android:layout_marginTop="@dimen/_12sdp"
+                                android:layout_toEndOf="@+id/txtTemperatureMain"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="|"/>
+
+                            <TextView
+                                android:id="@+id/txtWeatherDescription"
+                                android:textColor="@color/loginMainTitleColor"
+                                android:fontFamily="@font/montserrat_regular"
+                                android:layout_marginStart="@dimen/_2sdp"
+                                android:textSize="@dimen/_14sdp"
+                                android:layout_marginTop="@dimen/_13sdp"
+                                android:layout_toEndOf="@+id/sep"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Party Cloud"/>
+
+                        </RelativeLayout>
+
+
+                        <ImageView
+                            android:id="@+id/weatherIcon"
+                            android:scaleType="fitCenter"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_80sdp"
+                            android:src="@drawable/few_clouds_night"/>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/userRelativeLayout"
+                        android:layout_below="@+id/mainRelativeLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/txtUsername"
+                            android:textColor="@color/loginMainTitleColor"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_width="match_parent"
+                            android:fontFamily="@font/montserrat_semi_bold"
+                            android:textSize="23sp"
+                            android:layout_height="match_parent"
+                            android:text="@string/howdy_user"/>
+
+                        <TextView
+                            android:id="@+id/txtCity"
+                            android:layout_below="@+id/txtUsername"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/loginMainTitleColor"
+                            android:fontFamily="@font/montserrat_medium"
+                            android:text="Negombo"
+                            android:textSize="18sp"
+                            android:layout_marginStart="@dimen/_15sdp"/>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_marginBottom="@dimen/_30sdp"
+                        android:layout_marginTop="@dimen/_25sdp"
+                        android:layout_below="@+id/userRelativeLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:id="@+id/l1"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_width="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:textAlignment="center"
+                                android:id="@+id/txtHumidity"
+                                android:textColor="@color/loginMainTitleColor"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_width="match_parent"
+                                android:fontFamily="@font/montserrat_semi_bold"
+                                android:textSize="18sp"
+                                android:layout_height="match_parent"
+                                android:text="61%"/>
+
+                            <TextView
+                                android:textAlignment="center"
+                                android:textColor="@color/loginMainTitleColor"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_width="match_parent"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:textSize="14sp"
+                                android:layout_height="match_parent"
+                                android:text="Humidity"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_toEndOf="@+id/l1"
+                            android:layout_marginStart="@dimen/_43sdp"
+                            android:layout_centerVertical="true"
+                            android:layout_width="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:textAlignment="center"
+                                android:id="@+id/txtPressure"
+                                android:textColor="@color/loginMainTitleColor"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_width="match_parent"
+                                android:fontFamily="@font/montserrat_semi_bold"
+                                android:textSize="18sp"
+                                android:layout_height="match_parent"
+                                android:text="1019Pa"/>
+
+                            <TextView
+                                android:textAlignment="center"
+                                android:textColor="@color/loginMainTitleColor"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_width="match_parent"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:textSize="14sp"
+                                android:layout_height="match_parent"
+                                android:text="Pressure"/>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_marginEnd="@dimen/_13sdp"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_width="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:textAlignment="center"
+                                android:id="@+id/txtWind"
+                                android:textColor="@color/loginMainTitleColor"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_width="match_parent"
+                                android:fontFamily="@font/montserrat_semi_bold"
+                                android:textSize="18sp"
+                                android:layout_height="match_parent"
+                                android:text="E 8 kmh"/>
+
+                            <TextView
+                                android:textAlignment="center"
+                                android:textColor="@color/loginMainTitleColor"
+                                android:layout_marginStart="@dimen/_15sdp"
+                                android:layout_width="match_parent"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:textSize="14sp"
+                                android:layout_height="match_parent"
+                                android:text="Wind"/>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <Button
+        android:layout_alignParentBottom="true"
+        android:id="@+id/btnLogout"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@drawable/button_background"
+        android:textColor="@color/white"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/logout"/>
+
+</RelativeLayout>

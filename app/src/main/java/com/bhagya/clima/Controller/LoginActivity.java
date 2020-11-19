@@ -2,16 +2,18 @@ package com.bhagya.clima.Controller;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,7 +21,6 @@ import com.bhagya.clima.Helper.AlertBar;
 import com.bhagya.clima.Helper.ProgressDialog;
 import com.bhagya.clima.Helper.ToolTip;
 import com.bhagya.clima.Helper.Validator;
-import com.bhagya.clima.HomeActivity;
 import com.bhagya.clima.Model.UserModel;
 import com.bhagya.clima.R;
 import com.bhagya.clima.Util.ConnectionUtil;
@@ -35,7 +36,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.net.NoRouteToHostException;
 import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
@@ -68,6 +68,10 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         progressDialog = new ProgressDialog();
+
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ) {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 101);
+        }
 
         if(ConnectionUtil.isInternetAvailable(getApplicationContext(), LoginActivity.this)){
             if(mAuth.getCurrentUser() != null){

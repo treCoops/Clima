@@ -11,4 +11,10 @@
     <string name="full_name">Full name</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="register">Register</string>
+    <string name="logout">Logout</string>
+    <string name="search_a_city">Search a city</string>
+    <string name="we_need_to_know_your_location_in_order_to_take_your_current_city">We need to know your location in order to take your current city</string>
+    <string name="enable_location">Enable Location</string>
+    <string name="enable">Enable</string>
+    <string name="howdy_user">Howdy, User</string>
 </resources>
