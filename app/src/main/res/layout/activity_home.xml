@@ -5,14 +5,17 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Controller.HomeActivity"
-    android:background="@drawable/splash_backgroud">
+    android:layout_marginTop="-1dp"
+    android:background="@drawable/light_background">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardSearch"
+        app:cardElevation="-1dp"
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         app:cardCornerRadius="@dimen/_10sdp"
+        app:cardBackgroundColor="@color/lightGray"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_height="wrap_content">
 
@@ -71,6 +74,8 @@
             android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
+                app:cardElevation="-1dp"
+                android:backgroundTint="@color/lightGray"
                 android:id="@+id/cardMain"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
@@ -277,9 +282,11 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                app:cardElevation="-1dp"
+                app:cardBackgroundColor="@color/lightGray"
                 android:id="@+id/cardDays"
                 android:layout_below="@+id/cardMain"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_30sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginStart="@dimen/_10sdp"
                 app:cardCornerRadius="@dimen/_10sdp"
@@ -287,6 +294,7 @@
                 android:layout_height="wrap_content">
 
                 <RelativeLayout
+                    android:background="@color/lightGray"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <TextView

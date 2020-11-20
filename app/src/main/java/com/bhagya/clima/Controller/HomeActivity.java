@@ -15,8 +15,6 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.Log;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -64,6 +62,8 @@ public class HomeActivity extends AppCompatActivity {
     RecyclerView recDays;
     RecyclerView.LayoutManager layoutManager;
     WeatherAdapter weatherAdapter;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

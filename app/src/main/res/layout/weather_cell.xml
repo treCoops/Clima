@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/weatherIcon"
         android:textColor="@color/loginMainTitleColor"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/montserrat_semi_bold"
         android:textSize="19sp"/>
 
     <TextView
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtTemp"
         android:textColor="@color/loginMainTitleColor"
-        android:fontFamily="@font/montserrat_medium"
+        android:fontFamily="@font/montserrat_semi_bold"
         android:textSize="16sp"/>
 
 </RelativeLayout>

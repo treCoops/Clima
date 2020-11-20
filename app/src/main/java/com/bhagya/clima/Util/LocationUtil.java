@@ -7,10 +7,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
-import android.util.Log;
-
 import androidx.core.app.ActivityCompat;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
@@ -21,6 +18,7 @@ public class LocationUtil {
     public boolean isGPSEnabled, isNetworkEnabled;
 
     public LocationUtil(Context context) {
+
         locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
@@ -29,6 +27,7 @@ public class LocationUtil {
     public Location getLocation(Context context) {
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
         }
+
         return locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
     }
 
