@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Controller.HomeActivity">
+    tools:context=".Controller.HomeActivity"
+    android:background="@drawable/splash_backgroud">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardSearch"
@@ -23,39 +24,43 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/searchHolder"
+            <EditText
+                android:id="@+id/txtSearchCity"
+                android:imeOptions="actionDone"
                 android:layout_width="match_parent"
-                app:startIconDrawable="@drawable/search"
-                android:layout_height="wrap_content"
+                android:imeActionId="1"
+                android:fontFamily="@font/montserrat_medium"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_40sdp"
+                android:textColor="@color/loginMainTitleColor"
+                android:importantForAutofill="no"
+                android:inputType="text|textNoSuggestions"
                 android:layout_marginEnd="@dimen/_40sdp"
-                android:hint="@string/search_a_city">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtSearchCity"
-                    android:fontFamily="@font/montserrat_medium"
-                    android:layout_width="match_parent"
-                    android:importantForAutofill="no"
-                    android:background="@android:color/transparent"
-                    android:inputType="text|textNoSuggestions"
-                    android:textColor="@color/loginMainTitleColor"
-                    android:layout_height="@dimen/_30sdp"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
+                android:hint="@string/search_a_city"/>
 
             <ImageView
                 android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
                 android:id="@+id/imgLocate"
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_25sdp"
                 android:src="@drawable/locate"/>
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:id="@+id/imgSearch"
+                android:layout_marginEnd="@dimen/_3sdp"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/search"/>
 
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 
     <ScrollView
+        android:layout_marginTop="@dimen/_20sdp"
         android:layout_below="@+id/cardSearch"
         android:id="@+id/scroll"
         android:layout_width="match_parent"
@@ -66,9 +71,8 @@
             android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
-               android:layout_alignParentTop="true"
-                android:layout_marginBottom="@dimen/_30sdp"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:id="@+id/cardMain"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginStart="@dimen/_10sdp"
                 app:cardCornerRadius="@dimen/_10sdp"
@@ -99,12 +103,12 @@
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/loginMainTitleColor"
                                 android:text="30\u00B0C"
-                                android:textSize="42sp"/>
+                                android:textSize="40sp"/>
 
                             <TextView
                                 android:id="@+id/sep"
                                 android:textColor="@color/loginMainTitleColor"
-                                android:layout_marginStart="@dimen/_10sdp"
+                                android:layout_marginStart="@dimen/_7sdp"
                                 android:textSize="@dimen/_14sdp"
                                 android:layout_marginTop="@dimen/_12sdp"
                                 android:layout_toEndOf="@+id/txtTemperatureMain"
@@ -117,8 +121,8 @@
                                 android:textColor="@color/loginMainTitleColor"
                                 android:fontFamily="@font/montserrat_regular"
                                 android:layout_marginStart="@dimen/_2sdp"
-                                android:textSize="@dimen/_14sdp"
-                                android:layout_marginTop="@dimen/_13sdp"
+                                android:textSize="@dimen/_10sdp"
+                                android:layout_marginTop="@dimen/_17sdp"
                                 android:layout_toEndOf="@+id/sep"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -206,7 +210,7 @@
 
                         <LinearLayout
                             android:layout_toEndOf="@+id/l1"
-                            android:layout_marginStart="@dimen/_43sdp"
+                            android:layout_marginStart="@dimen/_35sdp"
                             android:layout_centerVertical="true"
                             android:layout_width="wrap_content"
                             android:orientation="vertical"
@@ -272,21 +276,59 @@
 
             </androidx.cardview.widget.CardView>
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardDays"
+                android:layout_below="@+id/cardMain"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                app:cardCornerRadius="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/moreDays"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:textColor="@color/loginMainTitleColor"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_width="match_parent"
+                        android:fontFamily="@font/montserrat_semi_bold"
+                        android:textSize="23sp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/next_7_days" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recDays"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_125sdp"
+                        android:layout_below="@id/moreDays"
+                        android:layout_marginBottom="@dimen/_30sdp"
+                        android:layout_marginTop="@dimen/_10sdp"/>
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_below="@+id/cardDays"
+                android:id="@+id/btnLogout"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@drawable/button_background"
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/logout"/>
+
         </RelativeLayout>
 
     </ScrollView>
-
-    <Button
-        android:layout_alignParentBottom="true"
-        android:id="@+id/btnLogout"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginEnd="@dimen/_20sdp"
-        android:layout_marginBottom="@dimen/_20sdp"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:background="@drawable/button_background"
-        android:textColor="@color/white"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="@string/logout"/>
 
 </RelativeLayout>
